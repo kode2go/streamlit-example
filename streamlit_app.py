@@ -27,7 +27,7 @@ while True:
 #         st.write(f"{url} is down ({e})")
         
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    st.write(f"Timestamp: {timestamp}")
+#     st.write(f"Timestamp: {timestamp}")
     
     # Get the latest version of the DataFrame from the cache and append the new row
     df = create_df()
