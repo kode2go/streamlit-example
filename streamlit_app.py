@@ -18,6 +18,8 @@ In the meantime, below is an example of what you can do with just a few lines of
 import requests
 import time
 
+url = "https://users.chpc.ac.za"
+
 while True:
     try:
         response = requests.get(url, verify=True)
