@@ -3,8 +3,13 @@ import streamlit as st
 import requests
 import time
 
-# Create empty DataFrame to store status and timestamp information
-df = pd.DataFrame(columns=["status", "timestamp"])
+# Use st.cache to cache the function that generates the DataFrame
+@st.cache(allow_output_mutation=True)
+def create_df():
+    return pd.DataFrame(columns=["status", "timestamp"])
+
+# Create placeholder for the DataFrame
+df_placeholder = st.empty()
 
 url = "https://users.chpc.ac.za"
 
@@ -24,10 +29,12 @@ while True:
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
     st.write(f"Timestamp: {timestamp}")
     
-    # Update DataFrame with status and timestamp information
+    # Get the latest version of the DataFrame from the cache and append the new row
+    df = create_df()
     df.loc[len(df)] = [status, timestamp]
     
-    # Display DataFrame in Streamlit app
-    st.write(df)
+    # Clear the placeholder and show the latest row of the DataFrame
+    df_placeholder.empty()
+    df_placeholder.dataframe(df.tail(1))
     
     time.sleep(30)
