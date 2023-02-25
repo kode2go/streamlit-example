@@ -22,8 +22,10 @@ while True:
         response = requests.get(url, verify=False)
         if response.status_code == 200:
             print(f"{url} is up!")
+            status = 'up'
         else:
             print(f"{url} is down (status code {response.status_code})")
+            status = 'down'
     except requests.exceptions.RequestException as e:
         print(f"{url} is down ({e})")
 #         st.write(f"{url} is down ({e})")
