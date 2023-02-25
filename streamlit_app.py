@@ -14,16 +14,18 @@ df_placeholder = st.empty()
 url = "https://users.chpc.ac.za"
 
 while True:
+    import requests
+
+    url = "https://users.chpc.ac.za"
+
     try:
         response = requests.get(url, verify=False)
         if response.status_code == 200:
-            status = "up"
-#             st.write(f"{url} is up!")
+            print(f"{url} is up!")
         else:
-            status = "down"
-#             st.write(f"{url} is down (status code {response.status_code})")
+            print(f"{url} is down (status code {response.status_code})")
     except requests.exceptions.RequestException as e:
-        status = "down"
+        print(f"{url} is down ({e})")
 #         st.write(f"{url} is down ({e})")
         
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -37,4 +39,4 @@ while True:
     df_placeholder.empty()
     df_placeholder.dataframe(df.tail(1))
     
-    time.sleep(30)
+    time.sleep(10)
