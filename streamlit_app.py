@@ -15,7 +15,7 @@ url = "https://users.chpc.ac.za"
 
 while True:
     try:
-        response = requests.get(url, verify=True)
+        response = requests.get(url, verify=False)
         if response.status_code == 200:
             status = "up"
 #             st.write(f"{url} is up!")
