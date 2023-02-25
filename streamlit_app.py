@@ -39,6 +39,6 @@ while True:
     
     # Clear the placeholder and show the latest row of the DataFrame
     df_placeholder.empty()
-    df_placeholder.dataframe(df.tail(1))
+    df_placeholder.dataframe(df.tail(100))
     
     time.sleep(10)
